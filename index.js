@@ -9,23 +9,73 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-// this line below, sets a layout look to your express project
-// const reactEngine = require('express-react-views').createEngine();
-// app.engine('jsx', reactEngine);
 
-// // this tells express where to look for the view files
-// app.set('views', __dirname + '/views');
+/*
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ======             CONFIGURATION          =========
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ */
 
-// // this line sets react to be the default view engine
-// app.set('view engine', 'jsx');
+
+// const pg = require('pg');
+// const url = require('url');
+
+// var configs;
+
+// if( process.env.DATABASE_URL ){
+
+//     const params = url.parse(process.env.DATABASE_URL);
+//     const auth = params.auth.split(':');
+
+//     configs = {
+//     user: auth[0],
+//     password: auth[1],
+//     host: params.hostname,
+//     port: params.port,
+//     database: params.pathname.split('/')[1],
+//     ssl: { rejectUnauthorized: false }
+//     };
+
+// }else{
+//     configs = {
+//     user: 'postgres',
+//     host: '127.0.0.1',
+//     database: 'lyrics_explained',
+//     port: 5432
+//     };
+// }
+
+// const pool = new pg.Pool(configs);
+
+// pool.on('error', function (err) {
+//     console.log('idle client error', err.message, err.stack);
+// });
 
 
-// app.get('/hello', (request, response) => {
-//   console.log('waffles');
-//   response.render('hello');
-// })
+const db = require('./db')
 
-const port = 4000;
-app.listen(port, () => {
-    console.log("listening to channel 4000");
-})
+/**
+ * ===================================
+ * Listen to requests on port 4000
+ * ===================================
+ */
+const PORT = process.env.PORT || 4000;
+
+const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
+
+let onClose = function(){
+
+  server.close(() => {
+    console.log('Process terminated')
+    pool.end( () => console.log('Shut down db connection pool'));
+  })
+};
+
+process.on('SIGTERM', onClose);
+process.on('SIGINT', onClose);
