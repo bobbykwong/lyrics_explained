@@ -1,0 +1,37 @@
+<== Problem Statement ==>
+While lyrics are readily available for people to search, it is difficult to find interpretations to these lyrics. It is also interesting to know the different interpretations people have of the same lyrics
+
+
+<== Solution ==>
+Web application where people are able to find lyrics to songs. Lyrics interpretations are also available. Users can add lyrics to songs and add interpretations to lyrics. Interpretations are arranged based on number of likes.
+
+References from https://genius.com/
+ - Funny how genius lyrics used to be connected to spotify so you can read the lyrics while listening to the music on the same app
+ - I think its cos genius music is now tied to apple music lol.
+
+User Stories
+
+1. As an avid music listener, the lyrics of the song is just as important as the song itself. But song lyrics may not be easily understood at first glance, it would be useful if I am able to find interpretations for the song lyrics. I am also curious what each line or verse means specifically and not just the whole song.
+
+2. I enjoy having my own interpretations to song lyrics. It would be nice if there was a place where I could share my interpretations of lyrics and see perspectives from other listeners as well.
+
+
+<== Working Goals ==>
+MVP
+1. Working website where users are able to add lyrics to songs
+2. Afterwhich, users are able to add interpretation to each line/verse of the song
+3. Interpretations have 'likes' counter
+
+Further
+1. Carousel for the albums
+2. Autocomplete search for song title
+3. Connect to spotify api for artist names albums song titles etc.
+4. Connect to spotify api for live playback
+5. Allow user to upload album cover photo
+
+
+<== Technologies ==>
+1. Express and NodeJS (server side)
+2. GraphQL (api)
+3. PSQL (database)
+4. React (frontend)

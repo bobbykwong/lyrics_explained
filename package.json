@@ -1,0 +1,24 @@
+{
+  "name": "lyrics_explained",
+  "version": "1.0.0",
+  "description": "Lyrics and interpretations of your favourite songs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobbykwong/lyrics_explained.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bobbykwong/lyrics_explained/issues"
+  },
+  "homepage": "https://github.com/bobbykwong/lyrics_explained#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.1.0"
+  }
+}
