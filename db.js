@@ -47,9 +47,15 @@ pool.on('error', function (err) {
     console.log('idle client error', err.message, err.stack);
 });
 
-// pool.query('select * from song')
-//     .then(results => {console.log(results.rows)})
 
+var knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'postgres',
+    database : 'lyrics_explained',
+  }
+});
 
 /*
  * ===================================================
@@ -85,5 +91,7 @@ module.exports = {
     // },
 
     // get a reference to end the connection pool at server end
-    pool:pool
+    pool:pool,
+
+    knex:knex
 };
