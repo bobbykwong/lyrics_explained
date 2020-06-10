@@ -12,6 +12,7 @@ import {
 import Songlist from './components/Songlist';
 import Home from './components/Home';
 import About from './components/About';
+import Navigation from './components/layouts/Navigation'
 
 
 const client = new ApolloClient({
@@ -21,23 +22,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-        <div>
-            <h1>Oi oi</h1>
-            <Songlist />
-        </div>
         <Router>
           <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-              </ul>
-            </nav>
-
+            <Navigation />
             <Switch>
               <Route path="/about">
                 <About />
@@ -48,8 +35,6 @@ function App() {
             </Switch>
           </div>
         </Router>
-      );
-    }
     </ApolloProvider>
   );
 }
