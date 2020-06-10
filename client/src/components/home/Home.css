@@ -8,6 +8,11 @@ h2{
 	padding-bottom: 2%;
 }
 
+.instructions-div{
+	padding-top: 4%;
+	padding-bottom: 4%;
+}
+
 .instructions{
 	padding: 5% 3%;
 	display: flex;
@@ -25,6 +30,8 @@ h2{
 
 .latest-release{
 	background-color: #a9a9a9;
+	padding-top: 4%;
+	padding-bottom: 4%;
 }
 
 .album-div{
@@ -39,4 +46,8 @@ h2{
 
 .album-cover{
 	width: 100%;
+}
+
+.lyrics-table{
+	font-size: 3rem;
 }

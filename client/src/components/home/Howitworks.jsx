@@ -4,7 +4,7 @@ import Instruction from './Instruction'
 
 function Howitworks() {
     return(
-        <div>
+        <div className="instructions-div">
             <div className="header">
                 <h2>How It Works</h2>
             </div>
