@@ -13,6 +13,7 @@ import Songlist from './components/Songlist';
 import Home from './components/Home';
 import About from './components/About';
 import Navigation from './components/layouts/Navigation'
+import Addlyrics from './components/addlyrics/Addlyrics'
 
 
 const client = new ApolloClient({
@@ -26,8 +27,8 @@ function App() {
           <div>
             <Navigation />
             <Switch>
-              <Route path="/about">
-                <About />
+              <Route path="/addlyrics">
+                <Addlyrics />
               </Route>
               <Route path="/">
                 <Home />

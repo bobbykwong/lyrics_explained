@@ -5,19 +5,16 @@ import {
 
 function Navigation() {
     return(
-        <div>
-            <h1>This is Navigation</h1>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-              </ul>
-            </nav>
-        </div>
+        <nav className="navbar ">
+          <ul>
+            <div class="navbar-brand">
+                <Link to="/">Home</Link>
+            </div>
+            <li>
+              <Link to="/addlyrics">Add Lyrics</Link>
+            </li>
+          </ul>
+        </nav>
     )
 }
 
