@@ -1,6 +1,7 @@
 import React from 'react'
 import Howitworks from './Howitworks'
 import Latestrelease from './Latestrelease'
+import Lyricsaddition from './Lyricsaddition.jsx'
 
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
         <div>
             <Howitworks />
             <Latestrelease />
+            <Lyricsaddition />
         </div>
     )
 }
