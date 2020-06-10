@@ -1,8 +1,11 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema')
-
+const cors = require('cors');
 const app = express();
+
+// allow cross-origin requests
+app.use(cors())
 
 app.use('/graphql', graphqlHTTP({
     schema,
@@ -10,54 +13,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 
-/*
- * ===================================================
- * ===================================================
- * ===================================================
- * ===================================================
- * ======             CONFIGURATION          =========
- * ===================================================
- * ===================================================
- * ===================================================
- * ===================================================
- */
-
-
-// const pg = require('pg');
-// const url = require('url');
-
-// var configs;
-
-// if( process.env.DATABASE_URL ){
-
-//     const params = url.parse(process.env.DATABASE_URL);
-//     const auth = params.auth.split(':');
-
-//     configs = {
-//     user: auth[0],
-//     password: auth[1],
-//     host: params.hostname,
-//     port: params.port,
-//     database: params.pathname.split('/')[1],
-//     ssl: { rejectUnauthorized: false }
-//     };
-
-// }else{
-//     configs = {
-//     user: 'postgres',
-//     host: '127.0.0.1',
-//     database: 'lyrics_explained',
-//     port: 5432
-//     };
-// }
-
-// const pool = new pg.Pool(configs);
-
-// pool.on('error', function (err) {
-//     console.log('idle client error', err.message, err.stack);
-// });
-
-
+// Getting PG configs from db file
 const db = require('./db')
 
 /**
