@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import Songlist from './components/Songlist';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import About from './components/About';
 import Navigation from './components/layouts/Navigation'
 import Addlyrics from './components/addlyrics/Addlyrics'
