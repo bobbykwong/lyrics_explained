@@ -16,7 +16,10 @@ function Songlist() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  console.log(data)
+  console.log(data.songs)
+  const songList = data.songs.map(song => {
+    return <p>{song.title}</p>
+  })
 
   return (
     <div>
