@@ -49,5 +49,12 @@ h2{
 }
 
 .lyrics-table{
-	font-size: 3rem;
+	font-size: 4rem;
+	width: 80%;
+	margin: auto;
+	margin-top: 3%;
+}
+
+.artist-cover{
+	max-width: 15%;
 }

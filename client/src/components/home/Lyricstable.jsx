@@ -8,10 +8,15 @@ const GET_SONGS = gql`
             title
             artist{
                 name
+                artist_cover
             }
         }
     }
 `;
+
+const clickHandler = () => {
+    console.log('clicking')
+}
 
 
 function Lyricstable() {
@@ -23,16 +28,17 @@ function Lyricstable() {
 
     const table = data.songs.map((song, index) => {
         return(
-            <tr key={index}>
+            <tr key={index} onClick={() => {clickHandler()}}>
               <th scope="row">{index}</th>
               <td>{song.title}</td>
               <td>{song.artist[0].name}</td>
+              <td><img src={song.artist[0].artist_cover} className="artist-cover"/></td>
             </tr>
         )
     })
 
     return(
-        <table className="table lyrics-table">
+        <table className="table table-hover table-responsive-md lyrics-table">
           <tbody>
             {table}
           </tbody>
