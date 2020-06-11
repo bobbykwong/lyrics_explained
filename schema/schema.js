@@ -142,12 +142,30 @@ const Mutation = new GraphQLObjectType({
             type: SongType,
             args: {
                 title: {type: new GraphQLNonNull(GraphQLString)},
-                artist_id: {type: new GraphQLNonNull(GraphQLID)}
+                artist_id: {type: new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
                 const query = `INSERT INTO song(title, artist_id) VALUES ($1, $2) RETURNING title`;
 
                 const values = [args.title, args.artist_id];
+
+                return db.pool.query(query, values)
+                    .then(results => {
+                        return results.rows[0]
+                    })
+            }
+        },
+        addVerse: {
+            type: VerseType,
+            args: {
+                content: {type: new GraphQLNonNull(GraphQLString)},
+                position: {type: new GraphQLNonNull(GraphQLInt)},
+                song_id: {type: new GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args){
+                const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2 $3) RETURNING content, position`;
+
+                const values = [args.content, args.position, args.artist_id];
 
                 return db.pool.query(query, values)
                     .then(results => {
