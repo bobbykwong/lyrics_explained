@@ -9,3 +9,10 @@ CREATE TABLE IF NOT EXISTS song(
 	title TEXT,
 	artist_id INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS verse(
+	id SERIAL PRIMARY KEY,
+	content TEXT,
+	position INTEGER,
+	song_id INTEGER
+);

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Addlyrics() {
     return(
-        <p>add lyrics form</p>
+        <h2>Add lyrics to your favourite song</h2>
     )
 }
 

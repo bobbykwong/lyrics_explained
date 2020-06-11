@@ -9,7 +9,7 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLList,
-    GraphQLInteger
+    GraphQLInt
 } = graphql;
 
 
@@ -43,6 +43,22 @@ const ArtistType = new GraphQLObjectType({
     })
 });
 
+
+const VerseType = new GraphQLObjectType({
+    name: 'Verse',
+    sqlTable: 'verse',
+    uniqueKey: 'id',
+    fields: () => ({
+        id: {type: GraphQLID},
+        content: {type: GraphQLString},
+        position: {type: GraphQLInt},
+        song: {
+            type: new GraphQLList(SongType),
+            sqlJoin: (songTable, verseTable) => `${verseTable}.song_id = ${songTable}.id`
+        }
+    })
+});
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -57,6 +73,15 @@ const RootQuery = new GraphQLObjectType({
         },
         artist: {
             type: ArtistType,
+            args: {id: {type: GraphQLID}},
+            resolve: (parent, args, context, resolveInfo) => {
+                return joinMonster(resolveInfo, {}, sql => {
+                    return db.knex.raw(sql)
+                })
+            }
+        },
+        verse: {
+            type: VerseType,
             args: {id: {type: GraphQLID}},
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
@@ -79,10 +104,43 @@ const RootQuery = new GraphQLObjectType({
                     return db.knex.raw(sql)
                 })
             }
+        },
+        verses: {
+            type: new GraphQLList(VerseType),
+            resolve: (parent, args, context, resolveInfo) => {
+                return joinMonster(resolveInfo, {}, sql => {
+                    return db.knex.raw(sql)
+                })
+            }
+        }
+    }
+})
+
+
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addArtist: {
+            type: ArtistType,
+            args: {
+                name: {type: GraphQLString},
+                artist_cover: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                const query = `INSERT INTO artist(name, artist_cover) VALUES ($1, $2) RETURNING *`;
+
+                const values = [args.name, args.artist_cover];
+
+                return db.pool.query(query, values)
+                    .then(results => {
+                        return results.rows
+                    })
+            }
         }
     }
 })
 
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutation
 })
