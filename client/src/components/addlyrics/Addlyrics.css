@@ -22,4 +22,5 @@ h2{
 	font-size: 3rem;
 	border: solid #00000047;
 	font-color: #212529a6;
+	display: block;
 }
