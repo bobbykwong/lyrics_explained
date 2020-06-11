@@ -1,0 +1,25 @@
+h2{
+	text-align: center;
+	font-size: 7rem;
+}
+
+.header{
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.lyrics-form{
+	width: 80%;
+	margin: 2% auto;
+}
+
+.input-field{
+	font-size: 4rem;
+	margin-bottom: 2%;
+}
+
+.verse-btn{
+	font-size: 3rem;
+	border: solid #00000047;
+	font-color: #212529a6;
+}

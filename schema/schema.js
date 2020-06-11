@@ -9,7 +9,8 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLList,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLNonNull
 } = graphql;
 
 
@@ -123,7 +124,7 @@ const Mutation = new GraphQLObjectType({
         addArtist: {
             type: ArtistType,
             args: {
-                name: {type: GraphQLString},
+                name: {type: new GraphQLNonNull(GraphQLString)},
                 artist_cover: {type: GraphQLString}
             },
             resolve(parent, args){
@@ -133,7 +134,24 @@ const Mutation = new GraphQLObjectType({
 
                 return db.pool.query(query, values)
                     .then(results => {
-                        return results.rows
+                        return results.rows[0]
+                    })
+            }
+        },
+        addSong: {
+            type: SongType,
+            args: {
+                title: {type: new GraphQLNonNull(GraphQLString)},
+                artist_id: {type: new GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args){
+                const query = `INSERT INTO song(title, artist_id) VALUES ($1, $2) RETURNING title`;
+
+                const values = [args.title, args.artist_id];
+
+                return db.pool.query(query, values)
+                    .then(results => {
+                        return results.rows[0]
                     })
             }
         }
