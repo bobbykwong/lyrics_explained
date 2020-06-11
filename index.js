@@ -14,12 +14,12 @@ app.use('/graphql', graphqlHTTP({
 
 // app.use(express.static(__dirname + '/'));
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('build'));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join('build', 'index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join('build', 'index.html'));
+  });
+}
 
 // Getting PG configs from db file
 const db = require('./db')
