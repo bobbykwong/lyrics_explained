@@ -160,10 +160,10 @@ const Mutation = new GraphQLObjectType({
             args: {
                 content: {type: new GraphQLNonNull(GraphQLString)},
                 position: {type: new GraphQLNonNull(GraphQLInt)},
-                song_id: {type: new GraphQLNonNull(GraphQLID)}
+                song_id: {type: new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
-                const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2 $3) RETURNING content, position`;
+                const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2, $3) RETURNING content, position`;
 
                 const values = [args.content, args.position, args.artist_id];
 
