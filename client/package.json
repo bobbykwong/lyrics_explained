@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "https://lyrics-explained.herokuapp.com/"
+  "homepage": "https://lyrics-explained.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
