@@ -26,11 +26,11 @@ function App() {
           <div>
             <Navigation />
             <Switch>
-              <Route path="/addlyrics">
-                <Addlyrics />
-              </Route>
               <Route path="/">
                 <Home />
+              </Route>
+              <Route path="/addlyrics">
+                <Addlyrics />
               </Route>
             </Switch>
           </div>
