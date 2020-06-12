@@ -50,14 +50,19 @@ function Form() {
     }
 
     return(
-        <form className="lyrics-form text-center" onSubmit={e => {submitHandler(e)}}>
-            <input className="form-control input-field" placeholder="Artist" onChange={(event) => setArtistName(event.target.value)} />
-            <input className="form-control input-field" placeholder="Artist Cover Image link" onChange={(event) => setArtistCover(event.target.value)} />
-            <input className="form-control input-field" placeholder="Song Title" onChange={(event) => setTitle(event.target.value)}/>
-            {verseField}
-            <button type="button" className="btn verse-btn mx-auto" onClick={() => setClick([...clicked, clicked[clicked.length - 1] + 1 ])}>New Verse</button>
-            <button type="submit" className="btn verse-btn mx-auto">Submit</button>
-        </form>
+        <div>
+            <div className="header">
+                <h2>Add lyrics to your favourite song</h2>
+            </div>
+            <form className="lyrics-form text-center" onSubmit={e => {submitHandler(e)}}>
+                <input className="form-control input-field" placeholder="Artist" onChange={(event) => setArtistName(event.target.value)} />
+                <input className="form-control input-field" placeholder="Artist Cover Image link" onChange={(event) => setArtistCover(event.target.value)} />
+                <input className="form-control input-field" placeholder="Song Title" onChange={(event) => setTitle(event.target.value)}/>
+                {verseField}
+                <button type="button" className="btn verse-btn mx-auto" onClick={() => setClick([...clicked, clicked[clicked.length - 1] + 1 ])}>New Verse</button>
+                <button type="submit" className="btn verse-btn mx-auto">Submit</button>
+            </form>
+        </div>
     )
 }
 

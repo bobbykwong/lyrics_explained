@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from './Form';
 import './Addlyrics.css';
+import Existingartist from './Existingartist'
+
 
 function Addlyrics() {
+    const [showForm, setShowForm] = useState(false);
+
+    const addNewArtist = () => {
+        setShowForm(!showForm)
+    }
+
+    let page;
+
+    page = !showForm ? <Existingartist addNewArtist={addNewArtist}/> : <Form />
+
+
     return(
-        <div>
-            <div className="header">
-                <h2>Add lyrics to your favourite song</h2>
-            </div>
-            <form >
-                <input className="form-control" placeholder="Artist"/>
-            </form>
-            <Form />
+        <div className="addlyrics-div">
+            {page}
         </div>
     )
 }
