@@ -74,7 +74,7 @@ const RootQuery = new GraphQLObjectType({
         },
         artist: {
             type: ArtistType,
-            args: {id: {type: GraphQLID}},
+            args: {id: {type: GraphQLInt}},
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
                     return db.knex.raw(sql)

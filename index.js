@@ -4,6 +4,7 @@ const schema = require('./schema/schema')
 const cors = require('cors');
 const app = express();
 const path = require('path');
+const pool = require('./db').pool
 
 // allow cross-origin requests
 app.use(cors())
@@ -16,10 +17,7 @@ app.use('/graphql', graphqlHTTP({
 // app.use(express.static(__dirname + '/'));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(__dirname, '/client/build', '/index.html'));
-  // });
+    app.use(express.static('client/build'));
 }
 
 // Getting PG configs from db file
