@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Form from './Form';
 import './Addlyrics.css';
 import {gql} from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
 import Existingartist from './Existingartist'
+import Newartistform from './Newartistform'
 
 const GET_ARTIST = gql`
     {
@@ -27,7 +27,7 @@ function Addlyrics() {
 
     let page;
 
-    page = !showForm ? <Existingartist addNewArtist={addNewArtist}/> : <Form />
+    page = !showForm ? <Existingartist addNewArtist={addNewArtist}/> : <Newartistform />
 
     const { loading, error, data } = useQuery(GET_ARTIST);
     if (error) return <p>Error</p>;

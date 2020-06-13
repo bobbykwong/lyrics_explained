@@ -35,12 +35,12 @@ function Existingartist(props) {
             <div className="header">
                 <h2>Find from existing artists</h2>
             </div>
+            <button className="btn new-artist-btn" onClick={() => {props.addNewArtist()}}>Add new Artist</button>
             <form className="lyrics-form">
                 <input className="form-control input-field" placeholder="Artist" onChange={(event) => {setArtist(event.target.value)}}/>
-                <button className="btn new-artist-btn" onClick={(event) => {findArtistHandler(event)}}>Find Artist</button>
+                <button className="btn find-artist-btn" onClick={(event) => {findArtistHandler(event)}}>Find Artist</button>
             </form>
             {showArtist}
-            <button className="btn new-artist-btn" onClick={() => {props.addNewArtist()}}>Add new Artist</button>
 
         </div>
     )

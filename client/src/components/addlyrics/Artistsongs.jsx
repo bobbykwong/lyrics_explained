@@ -9,17 +9,17 @@ function Artistsongs(props) {
         console.log(artist)
         artistName = artist.name
 
-        songList = artist.songs.map(song => {
+        songList = artist.songs.map((song, songIndex) => {
             return(
-                <tr>
-                  <th scope="row">1</th>
+                <tr key={songIndex}>
+                  <th scope="row">{songIndex}</th>
                   <td>{song.title}</td>
                 </tr>
             )
         })
 
         songTable = (
-            <table class="table">
+            <table className="table artist-song-table">
               <tbody>
                 {songList}
               </tbody>
@@ -29,7 +29,7 @@ function Artistsongs(props) {
 
     return(
         <div>
-            <p>{artistName}</p>
+            <h3>{artistName}</h3>
             {songTable}
         </div>
     )
