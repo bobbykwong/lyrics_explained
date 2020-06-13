@@ -42,6 +42,8 @@ function Newartistform() {
     }
     else if ("data" in artistData){
         const data = artistData.data.addArtist
+        console.log("printing data")
+        console.log(data)
         formState = <Form data={data}/>
     }
 

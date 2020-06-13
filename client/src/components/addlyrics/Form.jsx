@@ -10,7 +10,17 @@ const ADD_SONG = gql`
     }
 `;
 
+const ADD_VERSE = gql`
+    mutation($content: String!, $position: Int!, $song_id: Int!) {
+        addVerse(content: $content, position: $position, song_id: $song_id){
+            content
+        }
+    }
+`;
+
 function Form(props) {
+    console.log("doing da props")
+    console.log(props)
     // Getting artist data from props
     const artistName = props.data.name
     const artistCover = props.data.artist_cover
@@ -19,9 +29,11 @@ function Form(props) {
     // Getting state from the input fields
     const [clicked, setClick] = useState([0]);
     const [title, setTitle] = useState("");
+    const [verses, setVerses] = useState([]);
 
     // Creating mutation function
     const [addSong] = useMutation(ADD_SONG);
+    const [addVerse] = useMutation(ADD_VERSE);
 
     const verseField = clicked.map((field, index) => {
         return (
@@ -40,9 +52,9 @@ function Form(props) {
 
     return(
         <div>
-            <div className="header">
-                <h2>Add lyrics to your song</h2>
-            </div>
+            <img src={artistCover} className="artist-image"></img>
+            <h3 className="artist-name">{artistName}</h3>
+
             <form className="lyrics-form text-center" onSubmit={e => {submitHandler(e)}}>
                 <input className="form-control input-field" placeholder="Song Title" onChange={(event) => setTitle(event.target.value)}/>
                 {verseField}

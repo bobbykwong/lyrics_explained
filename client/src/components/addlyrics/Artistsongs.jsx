@@ -4,6 +4,8 @@ function Artistsongs(props) {
     let artistName
     let songTable
     let songList
+    let button
+
     if ("artist" in props.data) {
         const artist = props.data.artist
         console.log(artist)
@@ -25,11 +27,14 @@ function Artistsongs(props) {
               </tbody>
             </table>
         )
+
+        button = <button className="btn new-song-btn" onClick={() => {props.addLyrics()}}>Add Song</button>
     }
 
     return(
         <div>
             <h3>{artistName}</h3>
+            {button}
             {songTable}
         </div>
     )
