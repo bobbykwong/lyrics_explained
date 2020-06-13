@@ -65,7 +65,19 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         song: {
             type: SongType,
-            args: {id: {type: GraphQLID}},
+            args: {
+                title: {type: GraphQLString},
+                id: {type: GraphQLID}
+            },
+            where: (songTable, args, context) => {
+                const whereClause = [];
+                if (args.id) {
+                    return `${songTable}.id = ${args.id}`;
+                }
+                else if (args.title) {
+                    return `${songTable}.title = '${args.title}'`
+                }
+            },
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
                     return db.knex.raw(sql)
@@ -74,7 +86,12 @@ const RootQuery = new GraphQLObjectType({
         },
         artist: {
             type: ArtistType,
-            args: {id: {type: GraphQLInt}},
+            args: {
+                name: {type: GraphQLString}
+            },
+            where: (artistTable, args, context) => {
+                return `${artistTable}.name = '${args.name}'`
+            },
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
                     return db.knex.raw(sql)
