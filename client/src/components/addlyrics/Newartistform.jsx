@@ -23,11 +23,10 @@ function Newartistform() {
     const [artistData, setArtistData] = useState({});
 
     // What is being rendered in the dom
-    let formState;
+    let page;
 
-    console.log(artistData)
     if (!("data" in artistData)) {
-        formState = (
+        page = (
             <div>
                 <div className="header">
                     <h2>Add a new Artist</h2>
@@ -42,9 +41,7 @@ function Newartistform() {
     }
     else if ("data" in artistData){
         const data = artistData.data.addArtist
-        console.log("printing data")
-        console.log(data)
-        formState = <Form data={data}/>
+        page = <Form data={data}/>
     }
 
     // Creating mutation function
@@ -54,7 +51,6 @@ function Newartistform() {
         e.preventDefault();
         addArtist({ variables: { name: artistName, artist_cover: artistCover } })
             .then(results => {
-                console.log(results)
                 setArtistData(results)
             })
     }
@@ -62,7 +58,7 @@ function Newartistform() {
 
     return(
         <div>
-            {formState}
+            {page}
         </div>
     )
 }

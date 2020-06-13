@@ -19,8 +19,6 @@ const ADD_VERSE = gql`
 `;
 
 function Form(props) {
-    console.log("doing da props")
-    console.log(props)
     // Getting artist data from props
     const artistName = props.data.name
     const artistCover = props.data.artist_cover
@@ -29,15 +27,28 @@ function Form(props) {
     // Getting state from the input fields
     const [clicked, setClick] = useState([0]);
     const [title, setTitle] = useState("");
-    const [verses, setVerses] = useState([]);
+    const [verses, setVerses] = useState([0]);
 
     // Creating mutation function
     const [addSong] = useMutation(ADD_SONG);
     const [addVerse] = useMutation(ADD_VERSE);
 
-    const verseField = clicked.map((field, index) => {
+    const addingVerse = (e, index) => {
+        const value = e.target.value
+        const verseArray = verses.map((el, i) => {
+            if (i === index) {
+                return value
+            }else{
+                return el
+            }
+        })
+
+        setVerses(verseArray)
+    }
+
+    const verseField = verses.map((field, index) => {
         return (
-            <textarea key={index} className="form-control input-field" placeholder="Lyrics here. Add a new verse whenever you think it deserves its own set of interpretations"/>
+            <textarea key={index} className="form-control input-field" onChange={(e) => {addingVerse(e, index)}} placeholder="Lyrics here. Add a new verse whenever you think it deserves its own set of interpretations"/>
         )
     })
 
@@ -50,6 +61,7 @@ function Form(props) {
         window.location = '/'
     }
 
+    console.log(verses)
     return(
         <div>
             <img src={artistCover} className="artist-image"></img>
@@ -58,7 +70,7 @@ function Form(props) {
             <form className="lyrics-form text-center" onSubmit={e => {submitHandler(e)}}>
                 <input className="form-control input-field" placeholder="Song Title" onChange={(event) => setTitle(event.target.value)}/>
                 {verseField}
-                <button type="button" className="btn verse-btn mx-auto" onClick={() => setClick([...clicked, clicked[clicked.length - 1] + 1 ])}>New Verse</button>
+                <button type="button" className="btn verse-btn mx-auto" onClick={() => setVerses([...verses, verses.length ])}>New Verse</button>
                 <button type="submit" className="btn verse-btn mx-auto">Submit</button>
             </form>
         </div>

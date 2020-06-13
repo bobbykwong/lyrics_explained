@@ -8,7 +8,6 @@ function Artistsongs(props) {
 
     if ("artist" in props.data) {
         const artist = props.data.artist
-        console.log(artist)
         artistName = artist.name
 
         songList = artist.songs.map((song, songIndex) => {
