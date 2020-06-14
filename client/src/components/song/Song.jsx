@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './song.css'
 import Banner from './Banner'
 import Lyrics from './Lyrics'
+import Interpretations from './Interpretations'
 
 function Song(props) {
     // Assiging song data to variables for ease of reference
@@ -11,12 +12,18 @@ function Song(props) {
     const artistImg = songData.artist[0].artist_cover
     const songTitle = songData.title
 
+    // Show interpretations on click
+    const showInterpretations = (verseIndex) => {
+        console.log(verseIndex)
+    }
+
     return(
         <div>
             <Banner songData={props.songData}/>
             <div className="container lyrics-container">
                 <div className="row">
-                    <Lyrics songData={props.songData}/>
+                    <Lyrics songData={props.songData} showInterpretations={showInterpretations}/>
+                    <Interpretations songData={props.songData}/>
                 </div>
             </div>
         </div>

@@ -16,3 +16,10 @@ CREATE TABLE IF NOT EXISTS verse(
 	position INTEGER,
 	song_id INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS interpretation(
+	id SERIAL PRIMARY KEY,
+	content TEXT,
+	likes INTEGER,
+	verse_id INTEGER
+);

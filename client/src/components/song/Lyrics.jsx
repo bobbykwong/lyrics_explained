@@ -16,16 +16,16 @@ function Lyrics(props) {
     const lyrics = verseArray.map((el, index) => {
         const verseLines = el.split('.')
 
-        const verseLinesStyled = verseLines.map(e => {
+        const verseLinesStyled = verseLines.map((e, i) => {
             return(
-                <div>
+                <div key={i}>
                     <p>{e}</p>
                 </div>
             )
         })
 
         return(
-            <div className="verse-para">
+            <div className="verse-para" key={index} onClick={() => {props.showInterpretations(index)}}>
                 {verseLinesStyled}
             </div>
         )

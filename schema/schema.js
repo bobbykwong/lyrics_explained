@@ -27,7 +27,7 @@ const SongType = new GraphQLObjectType({
         },
         verses: {
             type: new GraphQLList(VerseType),
-            sqlJoin: (songTable, verseTable) => `${verseTable}.song_id = ${songTable}.id`
+            sqlJoin: (songTable, verseTable) => `${songTable}.id = ${verseTable}.song_id`
         }
     })
 });
@@ -43,7 +43,7 @@ const ArtistType = new GraphQLObjectType({
         artist_cover: {type: GraphQLString},
         songs: {
             type: new GraphQLList(SongType),
-            sqlJoin: (artistTable, songTable) => `${songTable}.artist_id = ${artistTable}.id`
+            sqlJoin: (songTable, artistTable) => `${songTable}.artist_id = ${artistTable}.id`
         }
     })
 });
@@ -54,12 +54,32 @@ const VerseType = new GraphQLObjectType({
     sqlTable: 'verse',
     uniqueKey: 'id',
     fields: () => ({
-        id: {type: GraphQLID},
+        id: {type: GraphQLInt},
         content: {type: GraphQLString},
         position: {type: GraphQLInt},
         song: {
             type: new GraphQLList(SongType),
-            sqlJoin: (songTable, verseTable) => `${verseTable}.song_id = ${songTable}.id`
+            sqlJoin: (songTable, verseTable) => `${songTable}.id = ${verseTable}.song_id`
+        },
+        interpretations: {
+            type: new GraphQLList(InterpretationType),
+            sqlJoin: (verseTable, interpretationTable) => `${verseTable}.id = ${interpretationTable}.verse_id `
+        }
+    })
+});
+
+
+const InterpretationType = new GraphQLObjectType({
+    name: 'Interpretation',
+    sqlTable: 'interpretation',
+    uniqueKey: 'id',
+    fields: () => ({
+        id: {type: GraphQLInt},
+        content: {type: GraphQLString},
+        likes: {type: GraphQLInt},
+        verse: {
+            type: new GraphQLList(VerseType),
+            sqlJoin: (verseTable, interpretationTable) => `${verseTable}.id = ${interpretationTable}.verse_id`
         }
     })
 });
@@ -107,6 +127,16 @@ const RootQuery = new GraphQLObjectType({
             args: {id: {type: GraphQLID}},
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
+                    console.log(args)
+                    return db.knex.raw(sql)
+                })
+            }
+        },
+        interpretation: {
+            type: InterpretationType,
+            args: {id: {type: GraphQLID}},
+            resolve: (parent, args, context, resolveInfo) => {
+                return joinMonster(resolveInfo, {}, sql => {
                     return db.knex.raw(sql)
                 })
             }
@@ -129,6 +159,14 @@ const RootQuery = new GraphQLObjectType({
         },
         verses: {
             type: new GraphQLList(VerseType),
+            resolve: (parent, args, context, resolveInfo) => {
+                return joinMonster(resolveInfo, {}, sql => {
+                    return db.knex.raw(sql)
+                })
+            }
+        },
+        interpretations: {
+            type: new GraphQLList(InterpretationType),
             resolve: (parent, args, context, resolveInfo) => {
                 return joinMonster(resolveInfo, {}, sql => {
                     return db.knex.raw(sql)
@@ -187,6 +225,24 @@ const Mutation = new GraphQLObjectType({
                 const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2, $3) RETURNING *`;
 
                 const values = [args.content, args.position, args.song_id];
+
+                return db.pool.query(query, values)
+                    .then(results => {
+                        return results.rows[0]
+                    })
+            }
+        },
+        addInterpretation: {
+            type: InterpretationType,
+            args: {
+                content: {type: new GraphQLNonNull(GraphQLString)},
+                likes: {type: new GraphQLNonNull(GraphQLInt)},
+                verse_id: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve(parent, args){
+                const query = `INSERT INTO interpretation(content, likes, verse_id) VALUES ($1, $2, $3) RETURNING *`;
+
+                const values = [args.content, args.likes, args.verse_id];
 
                 return db.pool.query(query, values)
                     .then(results => {

@@ -11,6 +11,11 @@ const GET_SONG = gql`
             verses{
                 content
                 position
+                id
+                interpretations{
+                    content
+                    likes
+                }
             }
             artist{
                 name
