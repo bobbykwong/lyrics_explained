@@ -27,7 +27,7 @@ const SongType = new GraphQLObjectType({
         },
         verses: {
             type: new GraphQLList(VerseType),
-            sqlJoin: (verseTable, songTable) => `${verseTable}.song_id = ${songTable}.id`
+            sqlJoin: (songTable, verseTable) => `${verseTable}.song_id = ${songTable}.id`
         }
     })
 });
