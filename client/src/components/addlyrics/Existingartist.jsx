@@ -9,6 +9,7 @@ const GET_ARTIST = gql`
         artist(name: $name) {
             name
             artist_cover
+            id
             songs{
                 title
             }

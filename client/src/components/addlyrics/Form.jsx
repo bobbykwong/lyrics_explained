@@ -6,6 +6,7 @@ const ADD_SONG = gql`
     mutation($title: String!, $artist_id: Int!) {
         addSong(title: $title, artist_id: $artist_id){
             title
+            id
         }
     }
 `;
@@ -14,6 +15,8 @@ const ADD_VERSE = gql`
     mutation($content: String!, $position: Int!, $song_id: Int!) {
         addVerse(content: $content, position: $position, song_id: $song_id){
             content
+            position
+            id
         }
     }
 `;
@@ -22,10 +25,10 @@ function Form(props) {
     // Getting artist data from props
     const artistName = props.data.name
     const artistCover = props.data.artist_cover
-    const artistID = props.data.id
+    const artistID = parseInt(props.data.id)
 
+    console.log(props)
     // Getting state from the input fields
-    const [clicked, setClick] = useState([0]);
     const [title, setTitle] = useState("");
     const [verses, setVerses] = useState([0]);
 
@@ -56,12 +59,25 @@ function Form(props) {
         e.preventDefault();
         addSong({ variables: {title: title, artist_id: artistID} })
             .then(results => {
+                const songID = parseInt(results.data.addSong.id)
 
+                // Add mutations for verse using loop
+
+                let promises = []
+
+                verses.forEach((el, index) => {
+                    promises.push(addVerse({ variables: {content: el, position: index, song_id: songID}})
+                    )
+                })
+
+                Promise.all(promises)
+                    .then(() => {
+                        window.location = '/'
+                    })
             })
-        window.location = '/'
     }
 
-    console.log(verses)
+
     return(
         <div>
             <img src={artistCover} className="artist-image"></img>

@@ -24,6 +24,10 @@ const SongType = new GraphQLObjectType({
         artist: {
             type: new GraphQLList(ArtistType),
             sqlJoin: (songTable, artistTable) => `${songTable}.artist_id = ${artistTable}.id`
+        },
+        verses: {
+            type: new GraphQLList(VerseType),
+            sqlJoin: (verseTable, songTable) => `${verseTable}.song_id = ${songTable}.id`
         }
     })
 });
@@ -67,7 +71,7 @@ const RootQuery = new GraphQLObjectType({
             type: SongType,
             args: {
                 title: {type: GraphQLString},
-                id: {type: GraphQLID}
+                id: {type: GraphQLInt}
             },
             where: (songTable, args, context) => {
                 const whereClause = [];
@@ -162,7 +166,7 @@ const Mutation = new GraphQLObjectType({
                 artist_id: {type: new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
-                const query = `INSERT INTO song(title, artist_id) VALUES ($1, $2) RETURNING title`;
+                const query = `INSERT INTO song(title, artist_id) VALUES ($1, $2) RETURNING *`;
 
                 const values = [args.title, args.artist_id];
 
@@ -180,9 +184,9 @@ const Mutation = new GraphQLObjectType({
                 song_id: {type: new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
-                const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2, $3) RETURNING content, position`;
+                const query = `INSERT INTO verse(content, position, song_id) VALUES ($1, $2, $3) RETURNING *`;
 
-                const values = [args.content, args.position, args.artist_id];
+                const values = [args.content, args.position, args.song_id];
 
                 return db.pool.query(query, values)
                     .then(results => {
