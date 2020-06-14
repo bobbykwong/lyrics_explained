@@ -20,9 +20,8 @@ const GET_SONG = gql`
     }
 `;
 
-function Search() {
+function Search(props) {
     const [song, setSong] = useState("")
-    const [songData, setSongData] = useState([])
 
     // Query song
     const { loading, error, data } = useQuery(GET_SONG, {variables: {title: song}});
@@ -30,12 +29,9 @@ function Search() {
     // Find song on click
     const findSong = (e) => {
         e.preventDefault()
-
-        // Find song from database
-        setSongData(data)
+        props.showSong(data)
     }
 
-    console.log(songData)
     return(
         <form className="form-inline my-2 my-lg-0">
           <input className="form-control mr-sm-2 search-bar" type="search" placeholder="Search Lyrics" aria-label="Search" onChange={(e) => {setSong(e.target.value)}}>

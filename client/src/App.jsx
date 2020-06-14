@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }from 'react';
 import './App.css';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -19,18 +19,25 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
 });
 
+
 function App() {
+  const [songData, setSongData] = useState([])
+
+  const showSong = (data) => {
+    setSongData(data)
+  }
+
   return (
     <ApolloProvider client={client}>
         <Router>
           <div>
-            <Navigation />
+            <Navigation showSong={showSong}/>
             <Switch>
               <Route path="/addlyrics">
                 <Addlyrics />
               </Route>
               <Route path="/">
-                <Home />
+                <Home songData={songData}/>
               </Route>
             </Switch>
           </div>

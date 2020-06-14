@@ -12,3 +12,14 @@ INSERT INTO song (title, artist_id) VALUES ('Championships', 2);
 INSERT INTO song (title, artist_id) VALUES ('The Adults are Talking', 3);
 INSERT INTO song (title, artist_id) VALUES ('Reptilia', 3);
 INSERT INTO song (title, artist_id) VALUES ('Last Nite', 3);
+
+-- Deep Pockets
+INSERT INTO verse (content, position, song_id) VALUES ('Dressed in fatigues, I rep the East with my trustees. Smokin on crushed leaves. They turn they back on everything we built, then they must bleed. Ive seen splatter hit the snow when the blood freeze. Straps over territory they know we must keep', 0, 1);
+INSERT INTO verse (content, position, song_id) VALUES ('Get home and white Air Forces get brushed clean. Back when my mama would interrupt sleep. To tell me hurry up cause the bus leaves', 1, 1);
+INSERT INTO verse (content, position, song_id) VALUES ('Summertime heatwaves, I used to just cut sleeves. My shorty really love me, man, she want me to cut keys. I cant do that normal type of life, is it just me?', 2, 1);
+INSERT INTO verse (content, position, song_id) VALUES ('Niggas steady try to ride the wave, but its rough seas. Im losin enough sleep dealin with envy. And the news that they sent for me got the block in a frenzy. Its on Meech like its trendy', 3, 1);
+
+-- Toosie Slide
+INSERT INTO verse (content, position, song_id) VALUES ('Black leather glove, no sequins. Buckles on the jacket, its Alyx shit. Nike crossbody, got a piece in it. Got a dance, but its really on some street shit. Ima show you how to get it', 0, 4);
+INSERT INTO verse (content, position, song_id) VALUES ('It go right foot up, left foot, slide. Left foot up, right foot, slide. Basically, Im sayin either way, we bout to slide, ayy. Cant let this one slide, ayy', 1, 4);
+INSERT INTO verse (content, position, song_id) VALUES ('Dont you wanna dance with me? No?. I could dance like Michael Jackson. I could give you thug passion. Its a Thriller in the trap where we from. Baby, dont you wanna dance with me? No?. I could dance like Michael Jackson. I could give you satisfaction. And you know we out here every day with it. Ima show you how to get it', 2, 4);

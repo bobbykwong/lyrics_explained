@@ -1,0 +1,35 @@
+.artist-banner{
+	background-color: #a9a9a9;
+	padding: 3%;
+}
+
+.artist-img{
+}
+
+.artist-info{
+	display: inline-block;
+}
+
+.artist-name{
+	display: block;
+}
+
+.song-title{
+	display: block;
+}
+
+.lyrics-container{
+	margin-top: 5%;
+}
+
+.all-lyrics{
+	font-size: 3rem;
+}
+
+.verse-para{
+	margin-bottom: 4%;
+}
+
+.verse-para:hover{
+	background-color: #ececec;
+}
