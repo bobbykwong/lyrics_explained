@@ -33,3 +33,16 @@
 .verse-para:hover{
 	background-color: #ececec;
 }
+
+.add-interpretation-form{
+	width: 80%;
+	margin: auto;
+}
+
+.add-interpretation-input{
+	font-size: 3rem;
+}
+
+.add-interpretation-btn{
+	font-size: 3rem;
+}

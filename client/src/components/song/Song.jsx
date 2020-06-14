@@ -12,9 +12,12 @@ function Song(props) {
     const artistImg = songData.artist[0].artist_cover
     const songTitle = songData.title
 
+    // States
+    const [index, setIndex] = useState("")
+
     // Show interpretations on click
     const showInterpretations = (verseIndex) => {
-        console.log(verseIndex)
+        setIndex(verseIndex)
     }
 
     return(
@@ -23,7 +26,7 @@ function Song(props) {
             <div className="container lyrics-container">
                 <div className="row">
                     <Lyrics songData={props.songData} showInterpretations={showInterpretations}/>
-                    <Interpretations songData={props.songData}/>
+                    <Interpretations songData={props.songData} verseIndex={index}/>
                 </div>
             </div>
         </div>
