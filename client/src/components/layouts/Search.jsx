@@ -1,37 +1,13 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks';
-import {gql} from 'apollo-boost';
+import {GET_SONG} from '../../queries/queries'
 
-
-const GET_SONG = gql`
-    query Song($title: String!){
-        song(title: $title) {
-            title
-            id
-            verses{
-                content
-                position
-                id
-                interpretations{
-                    content
-                    likes
-                    id
-                }
-            }
-            artist{
-                name
-                artist_cover
-            }
-        }
-    }
-`;
 
 function Search(props) {
     const [song, setSong] = useState("")
 
     // Query song
-    const { loading, error, data } = useQuery(GET_SONG, {variables: {title: song}});
-
+    const { loading, error, data, refetch } = useQuery(GET_SONG, {variables: {title: song}});
     // Find song on click
     const findSong = (e) => {
         e.preventDefault()

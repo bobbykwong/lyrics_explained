@@ -6,6 +6,7 @@ function Allinterpretations(props) {
     const songData = props.songData
     const verseIndex = props.verseIndex
     const verses = songData.verses
+    const title = songData.title
 
     // Find interpretations that correspond to verse id
     let interpretations;
@@ -43,7 +44,7 @@ function Allinterpretations(props) {
         const id = el.id
 
         return (
-            <Singleinterpretation key={index} content={content} likes={likes} id={id}/>
+            <Singleinterpretation key={index} content={content} likes={likes} id={id} title={title}/>
         )
     })
 
