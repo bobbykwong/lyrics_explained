@@ -12,6 +12,7 @@ import {
 import Songlist from './components/Songlist';
 import Home from './components/home/Home';
 import Navigation from './components/layouts/Navigation'
+import Footer from './components/layouts/Footer'
 import Addlyrics from './components/addlyrics/Addlyrics'
 
 
@@ -40,6 +41,7 @@ function App() {
                 <Home songData={songData}/>
               </Route>
             </Switch>
+            <Footer />
           </div>
         </Router>
     </ApolloProvider>

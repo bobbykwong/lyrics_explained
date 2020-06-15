@@ -16,6 +16,7 @@
 
 html{
 	font-size: 5px;
+	height: 100%;
 }
 
 .navibar{
@@ -34,4 +35,17 @@ html{
 
 .search-btn{
 	font-size: 3rem;
+}
+
+.footer-container{
+	font-size: 3rem;
+	background-color: #343a40;
+	color: #64a1e3;
+	padding: 2%;
+	margin-top: 2%;
+}
+
+h4{
+	font-size: 4rem;
+	margin-bottom: 5%;
 }
