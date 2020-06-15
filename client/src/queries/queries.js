@@ -34,6 +34,15 @@ const GET_ARTIST = gql`
     }
 `;
 
+const ADD_INTERPRETATION = gql`
+    mutation($content: String!, $likes: Int! $verse_id: Int!) {
+        addInterpretation(content: $content, likes: $likes, verse_id: $verse_id){
+            content
+            likes
+            id
+        }
+    }
+`;
 
 const UPDATE_LIKES = gql`
     mutation($likes: Int! $id: Int!) {
@@ -47,5 +56,6 @@ const UPDATE_LIKES = gql`
 export{
     GET_SONG,
     GET_ARTIST,
+    ADD_INTERPRETATION,
     UPDATE_LIKES
 }

@@ -1,19 +1,12 @@
 import React, { useState } from 'react'
 import { useMutation } from "@apollo/react-hooks"
+import {ADD_INTERPRETATION, GET_SONG} from '../../queries/queries'
 import {gql} from 'apollo-boost';
 
-const ADD_INTERPRETATION = gql`
-    mutation($content: String!, $likes: Int! $verse_id: Int!) {
-        addInterpretation(content: $content, likes: $likes, verse_id: $verse_id){
-            content
-            likes
-            id
-        }
-    }
-`;
 
 function Interpretation(props) {
     const verseIndex = props.verseIndex
+    const title = props.songData.title
 
     const [interpretations, setInterpretations] = useState("")
 
@@ -23,7 +16,14 @@ function Interpretation(props) {
     const addingInterpretation = (e) => {
         e.preventDefault()
 
-        addInterpretation({variables: {content: interpretations, likes: 0, verse_id: verseIndex}})
+        addInterpretation({
+            variables: {content: interpretations, likes: 0, verse_id: verseIndex},
+            refetchQueries: [{
+                query: GET_SONG,
+                variables: {title: title}
+            }],
+            awaitRefetchQueries: true,
+        })
             .then(results => {
                 console.log(results)
             })
