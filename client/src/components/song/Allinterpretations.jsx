@@ -18,28 +18,32 @@ function Allinterpretations(props) {
     // Arrange interpretations based on number of likes
     let interpretationsSorted
     if (interpretations.length > 1) {
+        // If there is only one or no interpretations
         interpretationsSorted = interpretations
+
+        // Sort interpretations with insertion sort rather than bubble sort
         for (var i = 0; i < interpretations.length; i++) {
-            console.log(i)
-            for (var e = i; e > 0 && interpretations[e-1].likes > interpretations[e].likes; e--) {
-                console.log("sorting")
-                interpretationsSorted[e-1] = interpretations[i].likes
-                interpretationsSorted[e] = interpretations[e-1].likes
-                console.log("interpretationsSorted")
+            let currentEl = interpretations[i]
+
+            let e
+            for (e = i-1; e >= 0 && interpretations[e].likes < currentEl.likes; e--) {
+                interpretationsSorted[e+1] = interpretations[e]
             }
+            interpretationsSorted[e+1] = currentEl
         }
+
     }else{
         interpretationsSorted = interpretations
     }
 
-    console.log(interpretationsSorted)
-
     const allInterpretations = interpretationsSorted.map((el, index) => {
+
         const content = el.content
         const likes = el.likes
+        const id = el.id
 
         return (
-            <Singleinterpretation key={index} content={content} likes={likes}/>
+            <Singleinterpretation key={index} content={content} likes={likes} id={id}/>
         )
     })
 

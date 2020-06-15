@@ -24,8 +24,6 @@ function Lyricstable() {
     if (error) return <p>Error</p>;
     if (loading || !data) return <p>Loading...</p>;
 
-    console.log(data)
-
     const table = data.songs.map((song, index) => {
         return(
             <tr key={index} onClick={() => {clickHandler()}}>

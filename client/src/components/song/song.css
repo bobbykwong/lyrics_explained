@@ -61,6 +61,10 @@
 	display: inline;
 }
 
+.likes-img:hover{
+	width: 7%;
+}
+
 .single-interpretation-likes{
 	display: inline;
 	margin-left: 2%;

@@ -15,6 +15,7 @@ const GET_SONG = gql`
                 interpretations{
                     content
                     likes
+                    id
                 }
             }
             artist{
