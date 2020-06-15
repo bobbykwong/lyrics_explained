@@ -56,6 +56,12 @@
 
 }
 
-.single-interpretation-likes{
+.likes-img{
+	width: 5%;
+	display: inline;
+}
 
+.single-interpretation-likes{
+	display: inline;
+	margin-left: 2%;
 }

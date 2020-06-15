@@ -18,11 +18,14 @@ function Allinterpretations(props) {
     // Arrange interpretations based on number of likes
     let interpretationsSorted
     if (interpretations.length > 1) {
+        interpretationsSorted = interpretations
         for (var i = 0; i < interpretations.length; i++) {
-
+            console.log(i)
             for (var e = i; e > 0 && interpretations[e-1].likes > interpretations[e].likes; e--) {
+                console.log("sorting")
                 interpretationsSorted[e-1] = interpretations[i].likes
                 interpretationsSorted[e] = interpretations[e-1].likes
+                console.log("interpretationsSorted")
             }
         }
     }else{

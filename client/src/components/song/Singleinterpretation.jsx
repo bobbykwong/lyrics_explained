@@ -9,6 +9,7 @@ function Singleinterpretation(props) {
     return(
         <div className="single-interpretation-div">
             <p className="single-interpretation-content">{content}</p>
+            <img src="heart.svg" className="likes-img"/>
             <p className="single-interpretation-likes">{likes}</p>
         </div>
     )
