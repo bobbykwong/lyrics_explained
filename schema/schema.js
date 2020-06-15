@@ -249,6 +249,21 @@ const Mutation = new GraphQLObjectType({
                         return results.rows[0]
                     })
             }
+        },
+        updateLikes: {
+            type: InterpretationType,
+            args: {
+                likes: {type: new GraphQLNonNull(GraphQLInt)},
+                id: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve(parent, args){
+                const query = `UPDATE interpretation SET likes=${args.likes} WHERE id=${args.id}`;
+
+                return db.pool.query(query)
+                    .then(results => {
+                        return results.rows[0]
+                    })
+            }
         }
     }
 })
