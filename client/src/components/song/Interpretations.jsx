@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Addinterpretation from './Addinterpretation'
+import Allinterpretations from './Allinterpretations'
 
 function Interpretation(props) {
     // Only show Interpretation on click of verse
@@ -15,6 +16,7 @@ function Interpretation(props) {
         page = (
             <div>
                 <Addinterpretation verseIndex={verseIndex}/>
+                <Allinterpretations songData={songData} verseIndex={verseIndex}/>
             </div>
         )
     }

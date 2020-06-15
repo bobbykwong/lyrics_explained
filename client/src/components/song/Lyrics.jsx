@@ -9,12 +9,14 @@ function Lyrics(props) {
     let verseArray = []
     for (var i = 0; i < verses.length; i++) {
         const versePosition = verses[i].position
-        verseArray[versePosition] = verses[i].content
+        verseArray[versePosition] = [verses[i].content, verses[i].id]
     }
 
     // Map verse array
     const lyrics = verseArray.map((el, index) => {
-        const verseLines = el.split('.')
+        const content = el[0]
+        const id = el[1]
+        const verseLines = content.split('.')
 
         const verseLinesStyled = verseLines.map((e, i) => {
             return(
@@ -25,7 +27,7 @@ function Lyrics(props) {
         })
 
         return(
-            <div className="verse-para" key={index} onClick={() => {props.showInterpretations(index)}}>
+            <div className="verse-para" key={index} onClick={() => {props.showInterpretations(id)}}>
                 {verseLinesStyled}
             </div>
         )
