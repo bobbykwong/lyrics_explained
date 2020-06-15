@@ -23,6 +23,17 @@ const GET_SONG = gql`
     }
 `;
 
+const GET_ARTIST = gql`
+    {
+        artist{
+            name
+            songs{
+                title
+            }
+        }
+    }
+`;
+
 
 const UPDATE_LIKES = gql`
     mutation($likes: Int! $id: Int!) {
@@ -35,5 +46,6 @@ const UPDATE_LIKES = gql`
 
 export{
     GET_SONG,
+    GET_ARTIST,
     UPDATE_LIKES
 }

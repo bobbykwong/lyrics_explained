@@ -43,7 +43,7 @@ const ArtistType = new GraphQLObjectType({
         artist_cover: {type: GraphQLString},
         songs: {
             type: new GraphQLList(SongType),
-            sqlJoin: (songTable, artistTable) => `${songTable}.artist_id = ${artistTable}.id`
+            sqlJoin: (artistTable, songTable) => `${artistTable}.id = ${songTable}.artist_id`
         }
     })
 });

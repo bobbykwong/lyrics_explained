@@ -2,20 +2,10 @@ import React, { useState } from 'react';
 import './Addlyrics.css';
 import {gql} from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-
+import {GET_ARTIST} from '../../queries/queries'
 import Existingartist from './Existingartist'
 import Newartistform from './Newartistform'
 
-const GET_ARTIST = gql`
-    {
-        artist{
-            name
-            songs{
-                title
-            }
-        }
-    }
-`;
 
 function Addlyrics() {
 
