@@ -10,7 +10,6 @@ function Search(props) {
     const { loading, error, data, refetch } = useQuery(GET_SONG, {variables: {title: song}});
     // Find song on click
     const findSong = (e) => {
-        console.log(data)
         e.preventDefault()
         props.showSong(data)
     }
