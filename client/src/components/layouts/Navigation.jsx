@@ -6,10 +6,11 @@ import '../../App.css';
 import Search from './Search'
 
 function Navigation(props) {
+
     return(
         <nav className="navbar navbar-dark bg-dark">
             <div className="navbar-brand">
-                <Link className="navibar" to="/">Home</Link>
+                <Link className="navibar" to="/" onClick={() => {props.homePageClick()}}>Home</Link>
             </div>
             <div>
                 <Search showSong={props.showSong}/>

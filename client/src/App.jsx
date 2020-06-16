@@ -5,8 +5,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import Songlist from './components/Songlist';
@@ -28,11 +27,15 @@ function App() {
     setSongData(data)
   }
 
+  const homePageClick = () => {
+    setSongData([])
+  }
+
   return (
     <ApolloProvider client={client}>
         <Router>
           <div>
-            <Navigation showSong={showSong}/>
+            <Navigation showSong={showSong} homePageClick={homePageClick}/>
             <Switch>
               <Route path="/addlyrics">
                 <Addlyrics />
