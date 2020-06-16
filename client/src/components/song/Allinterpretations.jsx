@@ -9,7 +9,7 @@ function Allinterpretations(props) {
     const title = songData.title
 
     // Find interpretations that correspond to verse id
-    let interpretations;
+    let interpretations = [];
     for (var i = 0; i < verses.length; i++) {
         if (verseIndex === verses[i].id){
             interpretations = verses[i].interpretations

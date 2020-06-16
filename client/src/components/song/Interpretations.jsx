@@ -17,7 +17,6 @@ function Interpretation(props) {
         const songData = data.song
         const verseIndex = props.verseIndex
 
-        const interpretations = songData.verses[verseIndex].interpretations
         page = (
             <div>
                 <Addinterpretation songData={songData} verseIndex={verseIndex}/>
