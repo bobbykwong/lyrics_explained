@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/react-hooks"
 import {gql} from 'apollo-boost';
-
-const ADD_SONG = gql`
-    mutation($title: String!, $artist_id: Int!) {
-        addSong(title: $title, artist_id: $artist_id){
-            title
-            id
-        }
-    }
-`;
-
-const ADD_VERSE = gql`
-    mutation($content: String!, $position: Int!, $song_id: Int!) {
-        addVerse(content: $content, position: $position, song_id: $song_id){
-            content
-            position
-            id
-        }
-    }
-`;
+import {ADD_SONG, ADD_VERSE} from '../../queries/queries';
 
 function Form(props) {
     // Getting artist data from props
@@ -74,6 +56,12 @@ function Form(props) {
                     .then(() => {
                         window.location = '/'
                     })
+                    .catch((error) => {
+                        console.error(error)
+                    })
+            })
+            .catch(error => {
+                console.error(error)
             })
     }
 

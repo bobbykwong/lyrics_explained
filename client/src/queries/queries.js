@@ -34,6 +34,35 @@ const GET_ARTIST = gql`
     }
 `;
 
+const ADD_ARTIST = gql`
+    mutation($name: String!, $artist_cover: String!) {
+        addArtist(name: $name, artist_cover: $artist_cover){
+            name
+            id
+            artist_cover
+        }
+    }
+`;
+
+const ADD_SONG = gql`
+    mutation($title: String!, $artist_id: Int!) {
+        addSong(title: $title, artist_id: $artist_id){
+            title
+            id
+        }
+    }
+`;
+
+const ADD_VERSE = gql`
+    mutation($content: String!, $position: Int!, $song_id: Int!) {
+        addVerse(content: $content, position: $position, song_id: $song_id){
+            content
+            position
+            id
+        }
+    }
+`;
+
 const ADD_INTERPRETATION = gql`
     mutation($content: String!, $likes: Int! $verse_id: Int!) {
         addInterpretation(content: $content, likes: $likes, verse_id: $verse_id){
@@ -56,6 +85,9 @@ const UPDATE_LIKES = gql`
 export{
     GET_SONG,
     GET_ARTIST,
+    ADD_ARTIST,
+    ADD_SONG,
+    ADD_VERSE,
     ADD_INTERPRETATION,
     UPDATE_LIKES
 }

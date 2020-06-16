@@ -2,17 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from "@apollo/react-hooks"
 import {gql} from 'apollo-boost';
 import Form from './Form'
+import {ADD_ARTIST} from '../../queries/queries';
 
-
-const ADD_ARTIST = gql`
-    mutation($name: String!, $artist_cover: String!) {
-        addArtist(name: $name, artist_cover: $artist_cover){
-            name
-            id
-            artist_cover
-        }
-    }
-`;
 
 function Newartistform() {
     // Getting state from the input fields
@@ -52,6 +43,9 @@ function Newartistform() {
         addArtist({ variables: { name: artistName, artist_cover: artistCover } })
             .then(results => {
                 setArtistData(results)
+            })
+            .catch((error) => {
+                console.error(error)
             })
     }
 
