@@ -1,21 +1,10 @@
 import React, {useState} from 'react';
 import {gql} from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import { GET_ARTIST_SINGLE } from '../../queries/queries'
 import Artistsongs from './Artistsongs';
 import Form from './Form';
 
-const GET_ARTIST = gql`
-    query Artist($name: String!){
-        artist(name: $name) {
-            name
-            artist_cover
-            id
-            songs{
-                title
-            }
-        }
-    }
-`;
 
 function Existingartist(props) {
     const [artist, setArtist] = useState("");
@@ -23,7 +12,7 @@ function Existingartist(props) {
     const [artistData, setArtistData] = useState({});
     const [addSong, setAddSong] = useState(false);
 
-    const { loading, error, data } = useQuery(GET_ARTIST, {variables: {name: artist}});
+    const { loading, error, data } = useQuery(GET_ARTIST_SINGLE, {variables: {name: artist}});
 
     const findArtistHandler = (e) => {
         e.preventDefault()

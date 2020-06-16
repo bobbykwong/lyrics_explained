@@ -34,6 +34,32 @@ const GET_ARTIST = gql`
     }
 `;
 
+const GET_ARTIST_SINGLE = gql`
+    query Artist($name: String!){
+        artist(name: $name){
+            name
+            artist_cover
+            id
+            songs{
+                title
+            }
+        }
+    }
+`;
+
+const GET_SONGS = gql`
+    {
+        songs {
+            title
+            artist{
+                name
+                artist_cover
+            }
+        }
+    }
+`;
+
+
 const ADD_ARTIST = gql`
     mutation($name: String!, $artist_cover: String!) {
         addArtist(name: $name, artist_cover: $artist_cover){
@@ -85,6 +111,8 @@ const UPDATE_LIKES = gql`
 export{
     GET_SONG,
     GET_ARTIST,
+    GET_ARTIST_SINGLE,
+    GET_SONGS,
     ADD_ARTIST,
     ADD_SONG,
     ADD_VERSE,

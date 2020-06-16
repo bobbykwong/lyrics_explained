@@ -8,7 +8,6 @@ import {
   Route
 } from "react-router-dom";
 
-import Songlist from './components/Songlist';
 import Home from './components/home/Home';
 import Navigation from './components/layouts/Navigation'
 import Footer from './components/layouts/Footer'

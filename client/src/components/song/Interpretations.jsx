@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import {GET_SONG} from '../../queries/queries'
 import Addinterpretation from './Addinterpretation'

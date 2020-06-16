@@ -1,18 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import {gql} from 'apollo-boost';
+import {GET_SONGS} from '../../queries/queries'
 
-const GET_SONGS = gql`
-    {
-        songs {
-            title
-            artist{
-                name
-                artist_cover
-            }
-        }
-    }
-`;
 
 const clickHandler = () => {
     console.log('clicking')

@@ -9,7 +9,7 @@ function Banner(props) {
 
     return(
         <div className="artist-banner">
-            <img src={artistImg} className="artist-img"/>
+            <img src={artistImg} className="artist-img" alt="artist"/>
             <div className="artist-info">
                 <h2 className="song-title">{songTitle}</h2>
                 <h3 className="artist-name">{artistName}</h3>
