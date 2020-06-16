@@ -15,7 +15,11 @@
 const pg = require('pg');
 const url = require('url');
 
+const environment = process.env.ENVIRONMENT || 'development'
+const config = require('./knexfile.js')[environment];
+
 var configs;
+
 
 if( process.env.DATABASE_URL ){
 
@@ -48,14 +52,14 @@ pool.on('error', function (err) {
 });
 
 
-var knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host : '127.0.0.1',
-        user : 'postgres',
-        database : 'lyrics_explained',
-    }
-});
+var knex = require('knex')(config);
+//     client: 'pg',
+//     connection: {
+//         host : '127.0.0.1',
+//         user : 'postgres',
+//         database : 'lyrics_explained',
+//     }
+// });
 
 /*
  * ===================================================
