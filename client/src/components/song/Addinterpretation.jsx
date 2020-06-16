@@ -15,7 +15,6 @@ function Interpretation(props) {
 
     const addingInterpretation = (e) => {
         e.preventDefault()
-
         addInterpretation({
             variables: {content: interpretations, likes: 0, verse_id: verseIndex},
             refetchQueries: [{
@@ -26,6 +25,7 @@ function Interpretation(props) {
         })
             .then(results => {
                 console.log(results)
+                setInterpretations("")
             })
     }
 

@@ -58,3 +58,19 @@ h2{
 .artist-cover{
 	max-width: 15%;
 }
+
+.no-song{
+	text-align: center;
+	font-size: 3rem;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.no-song-header{
+	font-size: 6rem;
+	margin-bottom: 2%;
+}
+
+.no-song-img{
+	margin-bottom: 1%;
+}

@@ -5,6 +5,7 @@ import Howitworks from './Howitworks'
 import Latestrelease from './Latestrelease'
 import Lyricsaddition from './Lyricsaddition.jsx'
 import Song from '../song/Song'
+import Nosong from './Nosong'
 
 
 function Home(props) {
@@ -18,8 +19,11 @@ function Home(props) {
     const clickedSong = data
 
     let page;
+    if (!props.songData) {
+        page = <Nosong />
+    }
     // Show lyrics when song is selected
-    if (clickedSong) {
+    else if (clickedSong) {
         const recentSong = data.song
         page = <Song songData={recentSong}/>
         // setTitle(null)
