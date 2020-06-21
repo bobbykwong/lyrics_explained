@@ -20,7 +20,8 @@ console.log("showing the environment now")
 console.log(process.env.ENVIRONMENT)
 const environment = 'production' || 'development'
 const config = require('./knexfile.js')[environment];
-
+console.log("printing out config")
+console.log(config)
 var configs;
 
 
