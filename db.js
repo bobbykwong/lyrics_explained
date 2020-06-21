@@ -15,6 +15,8 @@
 const pg = require('pg');
 const url = require('url');
 
+console.log(process.env)
+console.log(process.env.ENVIRONMENT)
 const environment = process.env.ENVIRONMENT || 'development'
 const config = require('./knexfile.js')[environment];
 
