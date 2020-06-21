@@ -48,7 +48,8 @@ if( process.env.DATABASE_URL ){
     };
 }
 
-
+console.log("printing configs")
+console.log(configs)
 const pool = new pg.Pool(configs);
 
 pool.on('error', function (err) {
