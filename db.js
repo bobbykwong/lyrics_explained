@@ -53,13 +53,6 @@ pool.on('error', function (err) {
 
 
 var knex = require('knex')(config);
-//     client: 'pg',
-//     connection: {
-//         host : '127.0.0.1',
-//         user : 'postgres',
-//         database : 'lyrics_explained',
-//     }
-// });
 
 /*
  * ===================================================
