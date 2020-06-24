@@ -8,7 +8,7 @@ PostgreSQL 10.12
 # Built With
 
 Node.js
- -Express.js
+  - Express.js
  
 GraphQL
   - Apollo
