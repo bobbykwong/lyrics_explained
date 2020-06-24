@@ -17,8 +17,9 @@ const url = require('url');
 
 console.log(process.env)
 console.log("showing the environment now")
-console.log(process.env.ENVIRONMENT)
-const environment = 'production' || 'development'
+console.log(process.env.NODE_ENV)
+console.log(process.env.WEB_MEMORY)
+const environment = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
 const config = require('./knexfile.js')[environment];
 console.log("printing out config")
 console.log(config)
